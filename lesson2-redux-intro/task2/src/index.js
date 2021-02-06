@@ -1,4 +1,4 @@
-import store, { increment, decrement, reset } from '../../task2/src/store';
+import store, { increment, decrement, reset } from './store.js';
 import './index.scss';
 
 const resultElem = document.querySelector('.counter__result');
@@ -25,7 +25,7 @@ resetBtn.addEventListener('click', onReset);
 store.subscribe(() => {
   const state = store.getState();
   const currentValue = state.history.reduce((acc, value) => acc + value, 0);
-  const historyString = state.history.map(elem => (elem === 1 ? `+1` : elem)).join('');
+  const historyString = state.history.map(elem => (elem === 1 ? `+${elem}` : elem)).join('');
 
   resultElem.textContent = state.history.length === 0 ? '' : `${historyString} = ${currentValue}`;
 });
