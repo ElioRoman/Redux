@@ -22,7 +22,7 @@ export const reset = () => {
   };
 };
 
-const initialState = {
+export const initialState = {
   history: [],
 };
 
