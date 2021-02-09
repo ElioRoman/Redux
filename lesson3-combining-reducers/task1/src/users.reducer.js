@@ -9,29 +9,29 @@ const usersReducer = (state = initialState, action) => {
     case ADD_USER: {
       return {
         ...state,
-        usersList: state.usersList.concat(action.payLoad.userData),
+        usersList: state.usersList.concat(action.payload.newUser),
       };
     }
     case DELETE_USER: {
-      const newList = state.usersList.filter(user => user.id !== action.payLoad.userId);
       return {
         ...state,
-        usersList: newList,
+        usersList: state.usersList.filter(user => user.id !== action.payload.id),
       };
     }
     case UPDATE_USER: {
-      const newList = state.usersList.map(user => {
-        if (userId === action.payLoad.userId) {
-          return { ...user, ...action.payLoad.userData };
-        }
-        return user;
-      });
       return {
         ...state,
-        usersList: newList,
+        usersList: state.usersList.map(user => {
+          if (user.id === action.payload.id) {
+            return {
+              ...user,
+              ...action.payload.userData,
+            };
+          }
+          return user;
+        }),
       };
     }
-
     default:
       return state;
   }
