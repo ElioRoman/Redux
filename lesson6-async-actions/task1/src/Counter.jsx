@@ -5,23 +5,17 @@ import * as counterActions from './counter.actions';
 const Counter = ({ counter, increment, decrement, reset }) => {
   return (
     <div className="counter">
-      <button className="counter__button" onClick={decrement}>
+      <button onClick={decrement} className="counter__button">
         -
       </button>
-      <span className="counter__value" onClick={reset}>
+      <span onClick={reset} className="counter__value">
         {counter}
       </span>
-      <button className="counter__button" onClick={increment}>
+      <button onClick={increment} className="counter__button">
         +
       </button>
     </div>
   );
-};
-
-const mapState = state => {
-  return {
-    counter: state,
-  };
 };
 
 const mapDispatch = {
@@ -30,6 +24,10 @@ const mapDispatch = {
   reset: counterActions.reset,
 };
 
-const connector = connect(mapState, mapDispatch);
+const mapState = state => {
+  return {
+    counter: state,
+  };
+};
 
-export default connector(Counter);
+export default connect(mapState, mapDispatch)(Counter);

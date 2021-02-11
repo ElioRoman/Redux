@@ -1,4 +1,4 @@
-import { createStore, applyMiddleware } from 'redux';
+import { createStore, applyMiddleware, compose } from 'redux';
 import counterReducer from './counter.reducer';
 
 const logger = store => next => action => {
@@ -10,6 +10,9 @@ const logger = store => next => action => {
   return result;
 };
 
-const store = createStore(counterReducer, applyMiddleware(logger));
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+// const enhancer = composeEnhancers(applyMiddleware(logger));
+
+const store = createStore(counterReducer, composeEnhancers(applyMiddleware(logger)));
 
 export default store;
