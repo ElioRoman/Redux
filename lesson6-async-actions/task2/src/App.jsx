@@ -1,8 +1,8 @@
 import React from 'react';
 import { Provider } from 'react-redux';
 import store from './store';
-import UserInfo from './user/Userinfo';
-import SearchField from './user/SearchField';
+import UserInfo from './users/Userinfo';
+import SearchField from './users/SearchField';
 
 const App = () => {
   return (
