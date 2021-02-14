@@ -1,11 +1,11 @@
 import { SHOW_SPINNER, USER_DATA_RECIEVED } from './users.actions';
 
-const initialData = {
-  isFetching: false,
+const initialState = {
   userData: null,
+  isFetching: false,
 };
 
-const usersReducer = (state = initialData, action) => {
+const userReducer = (state = initialState, action) => {
   switch (action.type) {
     case SHOW_SPINNER: {
       return {
@@ -13,7 +13,6 @@ const usersReducer = (state = initialData, action) => {
         isFetching: true,
       };
     }
-
     case USER_DATA_RECIEVED: {
       return {
         ...state,
@@ -26,4 +25,4 @@ const usersReducer = (state = initialData, action) => {
   }
 };
 
-export default usersReducer;
+export default userReducer;

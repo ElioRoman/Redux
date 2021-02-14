@@ -1,6 +1,6 @@
-import { getUserData } from './usres.gateway';
 export const SHOW_SPINNER = 'SHOW_SPINNER';
 export const USER_DATA_RECIEVED = 'USER_DATA_RECIEVED';
+import { getUserData } from './users.gateway';
 
 export const showSpinner = () => {
   return {
@@ -19,7 +19,6 @@ export const userDataRecieved = userData => {
 
 export const fetchUserData = userName => {
   return function (dispatch) {
-    // code
     dispatch(showSpinner());
     getUserData(userName).then(userData => {
       dispatch(userDataRecieved(userData));

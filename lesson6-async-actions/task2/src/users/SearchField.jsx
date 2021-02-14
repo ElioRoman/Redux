@@ -1,15 +1,20 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+import React from 'react';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import * as usersActions from './users.actions';
 
-class SearchField extends Component {
-  state = {
-    userName: '',
-  };
+class SearchField extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      userName: '',
+    };
+  }
 
-  onChange = event => {
-    this.setState({ userName: event.target.value });
+  onChange = e => {
+    this.setState({
+      userName: e.target.value,
+    });
   };
 
   handleUserSearch = () => {
@@ -20,12 +25,12 @@ class SearchField extends Component {
     return (
       <div className="name-form">
         <input
-          value={this.state.userName}
-          onChange={this.onChange}
           type="text"
           className="name-form__input"
+          onChange={this.onChange}
+          value={this.state.userName}
         />
-        <button onClick={this.handleUserSearch} className="name-form__btn btn">
+        <button className="name-form__btn btn" onClick={this.handleUserSearch}>
           Show
         </button>
       </div>
@@ -33,11 +38,12 @@ class SearchField extends Component {
   }
 }
 
-SearchField.propTypes = {
+SearchField.proptypes = {
   fetchUserData: PropTypes.func.isRequired,
 };
 
 const mapDispatch = {
   fetchUserData: usersActions.fetchUserData,
 };
+
 export default connect(null, mapDispatch)(SearchField);
